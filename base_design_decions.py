@@ -277,7 +277,7 @@ precision = []
 recall = []
 f1_score =[]
 
-trainer.run(train_dataloader, 100)
+trainer.run(train_dataloader, 10)
 
 
 # ## Save Model
