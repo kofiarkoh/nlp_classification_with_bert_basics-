@@ -37,7 +37,7 @@ def load_data_from_file(data_filie, size):
     raw_text_labels = [1 if sentiment == 'design' else 0 for sentiment in df['label'].tolist()]
     return raw_text, raw_text_labels
 
-texts, labels = load_data_from_file('./combined_raw.csv', 20)
+texts, labels = load_data_from_file('./combined_raw.csv', 0)
 
 
 # In[3]:
@@ -72,7 +72,7 @@ class TextClassificationDataset(Dataset):
 bert_model_name = 'bert-base-uncased'
 num_classes = 2
 max_length = 128
-batch_size = 5
+batch_size = 8
 
 train_texts, val_texts, train_labels, val_labels = train_test_split(texts, labels, test_size=0.2, random_state=42)
 
@@ -277,7 +277,7 @@ precision = []
 recall = []
 f1_score =[]
 
-trainer.run(train_dataloader, 10)
+trainer.run(train_dataloader, 20)
 
 
 # ## Save Model
@@ -286,6 +286,7 @@ trainer.run(train_dataloader, 10)
 
 
 torch.save(model.state_dict(), f"./results/saved_models/{bert_model_name}.pt")
+print("training complemented")
 
 
 # ## Results Plotting
